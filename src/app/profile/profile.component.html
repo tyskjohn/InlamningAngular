@@ -34,77 +34,109 @@
 
   </div>
 
-
 </div>
-
 
 <ng-template #overview>
   <div class="col-9 mt-4">
     <ul class="list-group">
+      <li class="list-group-item"><strong>Firstname:</strong> {{ user.firstname }}</li>
+      <li class="list-group-item"><strong>Lastname:</strong> {{ user.lastname }}</li>
+      <li class="list-group-item"><strong>Middlename:</strong> {{ user.middlename }}</li>
       <li class="list-group-item"><strong>Birth date:</strong> {{ user.dateofbirth }}</li>
       <li class="list-group-item"><strong>Addressline:</strong> {{ user.addressline }}</li>
-      <li class="list-group-item"><strong>Zip:</strong> {{ user.zipcode }}</li>
+      <li class="list-group-item"><strong>Zipcode:</strong> {{ user.zipcode }}</li>
       <li class="list-group-item"><strong>City:</strong> {{ user.city }}</li>
-      <li class="list-group-item"></li>
+      <li class="list-group-item"><strong>Country:</strong> {{ user.country }}</li>
     </ul>
   </div>
 </ng-template>
 
 <ng-template #editAccount>
-    <form  [formGroup]="updateForm" (ngSubmit)="updateUserInfo()" class="mb-4 col-9">
+  <form [formGroup]="updateForm" (ngSubmit)="updateUserInfo()" class="mb-4 col-9">
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="firstname">Firstname</label>
-            <input value="{{user.firstname}}" type="text" formControlName="firstname" class="form-control" id="firstname">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="lastname">Lastname</label>
-            <input value="{{user.lastname}}" type="text" formControlName="lastname" class="form-control" id="lastname">
-          </div>
-        </div>
-    
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="dateofbirth">Date of birth</label>
-            <input value="{{user.dateofbirth}}" type="text" formControlName="dateofbirth" class="form-control" id="dateofbirth" placeholder="yyyymmdd-xxxx">
-          </div>
-        </div>
-    
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="addressline">Addressline</label>
-            <input value="{{user.addressline}}" type="text" formControlName="addressline" class="form-control" id="addressline">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="zipcode">Zipcode</label>
-            <input value="{{user.zipcode}}" type="text" formControlName="zipcode" class="form-control" id="zipcode">
-          </div>
-        </div>
-    
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="city">City</label>
-            <input value="{{user.city}}" type="text" formControlName="city" class="form-control" id="city">
-          </div>
-    
-          <div class="form-group col-md-6">
-            <label for="country">Country</label>
-            <input value="{{user.country}}" type="text" formControlName="country" class="form-control" id="country">
-          </div>
-        </div>
-    
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="email">Email address</label>
-            <input value="{{user.email}}" type="email" formControlName="email" class="form-control" id="email">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="password">Password</label>
-            <input value="{{user.password}}" type="password" formControlName="password" class="form-control" id="password">
-          </div>
-        </div>
-    
-        <button type="submit" value="Register" class="btn btn-lg btn-primary">Update</button>
-      </form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="firstname">Firstname</label>
+        <input value="{{user.firstname}}" type="text" formControlName="firstname" class="form-control" id="firstname">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lastname">Lastname</label>
+        <input value="{{user.lastname}}" type="text" formControlName="lastname" class="form-control" id="lastname">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="lastname">Middlename</label>
+        <input type="text" formControlName="middlename" class="form-control" id="middlename">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dateofbirth">Date of birth</label>
+        <input value="{{user.dateofbirth}}" type="text" formControlName="dateofbirth" class="form-control"
+          id="dateofbirth" placeholder="yyyymmdd-xxxx">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="addressline">Addressline</label>
+        <input value="{{user.addressline}}" type="text" formControlName="addressline" class="form-control"
+          id="addressline">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="zipcode">Zipcode</label>
+        <input value="{{user.zipcode}}" type="text" formControlName="zipcode" class="form-control" id="zipcode">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input value="{{user.city}}" type="text" formControlName="city" class="form-control" id="city">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="country">Country</label>
+        <input value="{{user.country}}" type="text" formControlName="country" class="form-control" id="country">
+      </div>
+    </div>
+
+    <h5 class="mb-3">Billing info</h5>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="addressline">Addressline</label>
+        <input type="text" formControlName="addressline2" class="form-control" id="addressline2">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="zipcode">Zipcode</label>
+        <input type="text" formControlName="zipcode2" class="form-control" id="zipcode2">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input type="text" formControlName="city2" class="form-control" id="city2">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="country">Country</label>
+        <input type="text" formControlName="country2" class="form-control" id="country2">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="email">Email address</label>
+        <input value="{{user.email}}" type="email" formControlName="email" class="form-control" id="email">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="password">Password</label>
+        <input value="{{user.password}}" type="password" formControlName="password" class="form-control" id="password">
+      </div>
+    </div>
+
+    <button type="submit" value="Register" class="btn btn-lg btn-primary">Update</button>
+  </form>
 </ng-template>
