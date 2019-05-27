@@ -5,3 +5,8 @@
 .bg-nav {
     background: rgb(255, 82, 82);
 }
+
+.nav-welcome {
+    text-decoration: bold !important;
+    color: white !important;
+}

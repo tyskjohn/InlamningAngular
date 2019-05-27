@@ -17,15 +17,19 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      dateofbirth: ['', Validators.required],
-      addressline: ['', Validators.required],
-      zipcode: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      firstname:      ['', Validators.required],
+      lastname:       ['', Validators.required],
+      dateofbirth:    ['', Validators.required],
+      addressline:    ['', Validators.required],
+      zipcode:        ['', Validators.required],
+      city:           ['', Validators.required],
+      country:        ['', Validators.required],
+      addressline2:   [''],
+      zipcode2:       [''],
+      city2:          [''],
+      country2:       [''],
+      email:          ['', Validators.required],
+      password:       ['', Validators.required]
     })
   }
 
@@ -43,12 +47,12 @@ export class RegisterComponent implements OnInit {
       
       if(registerres["success"]) {
         this.authService.login(this.registerForm.value).subscribe((loginres) => {
-
+          
           if(loginres["success"]) {
-            this.router.navigateByUrl('/profile');
-
-          } else {
             this.router.navigateByUrl('/login');
+            window.alert("Profile created successfully");
+          } else {
+            this.router.navigateByUrl('/register');
           }
         })
       }

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../user';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +13,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  _apiurl: string = "http://localhost:3001/api";
+
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private http: HttpClient) { }
+
+  updateForm: FormGroup;
+  isSubmitted: boolean = false;
+
+  public user = {};
 
   ngOnInit() {
+
+    this.updateForm = this.formBuilder.group({
+      firstname:      ['', Validators.required],
+      lastname:       ['', Validators.required],
+      dateofbirth:    ['', Validators.required],
+      addressline:    ['', Validators.required],
+      zipcode:        ['', Validators.required],
+      city:           ['', Validators.required],
+      country:        ['', Validators.required],
+      addressline2:   [''],
+      zipcode2:       [''],
+      city2:          [''],
+      country2:       [''],
+      email:          ['', Validators.required],
+      password:       ['', Validators.required]
+    })
+    
+    this.authService
+      .getUser()
+      .subscribe(data => this.user = data)
+  }
+
+  updateUserInfo() {
+    this.isSubmitted = true;
+    console.log("1")
+
+    if( this.updateForm.invalid ) {
+      console.log("2")
+      
+      return;
+    }
+    console.log("3")
+
+    this.authService.updateUserInfo(this.updateForm.value).subscribe((registerres) => {
+      if (registerres["success"]) {
+        console.log("user updated")
+      } else {
+        console.log("Fuck off")
+      }
+    })
+
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +10,16 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cookieService: CookieService, private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  isLoggedIn: boolean = false;
-
+  isLoggedIn: boolean = this.cookieService.check('isLoggedIn');
+  
   logout() {
+    this.authService.logout();
     this.isLoggedIn = false;
-    
     this.router.navigateByUrl("/");
   }
 }

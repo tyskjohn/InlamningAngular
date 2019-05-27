@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private cookieService: CookieService) { }
 
+  
   loginForm: FormGroup;
   isSubmitted: boolean = false;
 
@@ -20,11 +22,15 @@ export class LoginComponent implements OnInit {
       email: [ '', Validators.required ],
       password: [ '', Validators.required ],
     })
+    if (this.cookieService.check('isLoggedIn')) {
+      this.router.navigateByUrl('/profile')
+    }
   }
 
   get formControls() { return this.loginForm.controls }
 
   login() {
+    
     this.isSubmitted = true;
 
     if(this.loginForm.invalid) {
@@ -38,6 +44,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("USER_EMAIL", res["email"]);
 
       if(res["success"]) {
+        this.cookieService.set("isLoggedIn", "true", 7);
         this.router.navigateByUrl('/profile');
       } else {
         return;

@@ -1,0 +1,15 @@
+.user-img {
+    background: gray;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.user-fullname {
+    
+}
+
+nav {
+    list-style-type: none;
+    text-decoration: none;
+}

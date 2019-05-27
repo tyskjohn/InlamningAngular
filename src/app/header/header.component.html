@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-nav">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">Inlämning Angular</a>
+    <a class="navbar-brand" routerLink="/" style="font-size: 25px;">Inlämning Angular</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/" [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="active">Home</a>
@@ -37,13 +37,15 @@
 <ng-template #loggedIn>
 
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/profile" [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active">Johan Tysk</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
-    </li>
+      <li class="nav-item">
+        <span class="nav-link nav-welcome">Welcome</span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile" [routerLinkActiveOptions]="{ exact: true }"routerLinkActive="active">Johan Tysk</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
+      </li>
   </ul>
 
 </ng-template>
