@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: [ '', Validators.required ],
-      password: [ '', Validators.required ],
+      email: [      '', Validators.required ],
+      password: [   '', Validators.required ],
     })
     if (this.cookieService.check('isLoggedIn')) {
       this.router.navigateByUrl('/profile')
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((res) => {
 
       localStorage.setItem("ACCESS_TOKEN", res["token"]);
-      localStorage.setItem("USER_ID", res["_id"]);
+      localStorage.setItem("USER_ID", res["id"]);
       localStorage.setItem("USER_EMAIL", res["email"]);
 
       if(res["success"]) {

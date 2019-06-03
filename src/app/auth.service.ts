@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
@@ -12,6 +12,18 @@ export class AuthService {
   _apiurl: string = "http://localhost:3001/api";
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
+
+  public getUserId = localStorage.getItem("USER_ID");
+
+  public authToken() {
+    return localStorage.getItem('ACCESS_TOKEN')
+  } 
+
+  public getUser(): Observable<User[]> {
+
+    return this.http.get<User[]>(`${this._apiurl}/angularUsers/${this.getUserId}`);
+    
+  }
 
   public login(userInfo: User) {
     return this.http.post(`${this._apiurl}/angularUsers/login`, userInfo);
@@ -32,12 +44,8 @@ export class AuthService {
     this.cookieService.deleteAll();
   }
 
-  public getUser(): Observable<User[]> {
-    return this.http.get<User[]>(`${this._apiurl}/angularUsers/5ce651dd0d4c5501005d8224`)   
-  }
-
   public updateUserInfo(userInfo: User) {
-    return this.http.put(`${this._apiurl}/angularUsers/updateUser`, userInfo);
+    return this.http.put(`${this._apiurl}/angularUsers/${this.getUserId}`, userInfo);
   }
 
 }

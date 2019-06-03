@@ -25,45 +25,51 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.updateForm = this.formBuilder.group({
-      firstname:      ['', Validators.required],
-      lastname:       ['', Validators.required],
-      dateofbirth:    ['', Validators.required],
-      addressline:    ['', Validators.required],
-      zipcode:        ['', Validators.required],
-      city:           ['', Validators.required],
-      country:        ['', Validators.required],
-      addressline2:   [''],
-      zipcode2:       [''],
-      city2:          [''],
-      country2:       [''],
-      email:          ['', Validators.required],
-      password:       ['', Validators.required]
+      firstname:        ['', Validators.required],
+      lastname:         ['', Validators.required],
+      middlename:       [''],
+      dateofbirth:      ['', Validators.required],
+      addressline:      ['', Validators.required],
+      zipcode:          ['', Validators.required],
+      city:             ['', Validators.required],
+      country:          ['', Validators.required],
+      addressline2:     [''],
+      zipcode2:         [''],
+      city2:            [''],
+      country2:         [''],
+      email:            ['', Validators.required],
+      password:         ['', Validators.required]
     })
-    
+
     this.authService
       .getUser()
       .subscribe(data => this.user = data)
+
+    this.authService
+      .getUser()
+      .subscribe(data => this.updateForm.patchValue(data))
+
   }
 
   updateUserInfo() {
     this.isSubmitted = true;
     console.log("1")
 
-    if( this.updateForm.invalid ) {
+    if (this.updateForm.invalid) {
       console.log("2")
-      
+
       return;
     }
     console.log("3")
 
     this.authService.updateUserInfo(this.updateForm.value).subscribe((registerres) => {
       if (registerres["success"]) {
-        console.log("user updated")
+        this.router.navigateByUrl('/profile');
+        window.alert("Profile updated successfully");
       } else {
         console.log("Fuck off")
       }
     })
-
   }
 
 }

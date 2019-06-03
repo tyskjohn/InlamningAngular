@@ -41,7 +41,7 @@
         <span class="nav-link nav-welcome">Welcome</span>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/profile" [routerLinkActiveOptions]="{ exact: true }"routerLinkActive="active">Johan Tysk</a>
+        <a class="nav-link" routerLink="/profile" [routerLinkActiveOptions]="{ exact: true }"routerLinkActive="active">{{ user.firstname }} {{ user.lastname }}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
