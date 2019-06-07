@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
@@ -15,14 +15,12 @@ export class AuthService {
 
   public getUserId = localStorage.getItem("USER_ID");
 
-  public authToken() {
-    return localStorage.getItem('ACCESS_TOKEN')
-  } 
-
+  public authToken = localStorage.getItem('ACCESS_TOKEN');
+   
   public getUser(): Observable<User[]> {
-
-    return this.http.get<User[]>(`${this._apiurl}/angularUsers/${this.getUserId}`);
-    
+    let getToken = localStorage.getItem('ACCESS_TOKEN');
+    let userId = localStorage.getItem('USER_ID');
+    return this.http.get<User[]>(`${this._apiurl}/angularUsers/${userId}`, { headers: { 'Authorization': `Bearer ${getToken}` } } );
   }
 
   public login(userInfo: User) {
@@ -45,7 +43,9 @@ export class AuthService {
   }
 
   public updateUserInfo(userInfo: User) {
-    return this.http.put(`${this._apiurl}/angularUsers/${this.getUserId}`, userInfo);
+    let getToken = localStorage.getItem('ACCESS_TOKEN');
+    let userId = localStorage.getItem('USER_ID');
+    return this.http.put(`${this._apiurl}/angularUsers/${userId}`, userInfo, { headers: { 'Authorization': `Bearer ${getToken}` } } );
   }
 
 }

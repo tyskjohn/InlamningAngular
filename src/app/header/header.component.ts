@@ -15,9 +15,13 @@ export class HeaderComponent implements OnInit {
   public user = {};
 
   ngOnInit() {
-    this.authService
-    .getUser()
-    .subscribe(data => this.user = data)
+
+    if(this.authService.authToken) {
+      this.authService
+      .getUser()
+      .subscribe(data => this.user = data)
+    } 
+
   }
 
   isLoggedIn: boolean = this.cookieService.check('isLoggedIn');

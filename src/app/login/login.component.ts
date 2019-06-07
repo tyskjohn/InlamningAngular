@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
       password: [   '', Validators.required ],
     })
     if (this.cookieService.check('isLoggedIn')) {
-      this.router.navigateByUrl('/profile')
     }
   }
 

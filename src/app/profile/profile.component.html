@@ -54,6 +54,8 @@
 <ng-template #editAccount>
   <form [formGroup]="updateForm" (ngSubmit)="updateUserInfo()" class="mb-4 col-9">
 
+    <h5 class="mb-3">Personal info</h5>
+
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="firstname">Firstname</label>
@@ -76,6 +78,10 @@
           id="dateofbirth" placeholder="yyyymmdd-xxxx">
       </div>
     </div>
+
+    <hr class="mt-4 mb-4">
+
+    <h5 class="mb-3">Shipping info</h5>
 
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -101,6 +107,8 @@
       </div>
     </div>
 
+    <hr class="mt-4 mb-4">
+
     <h5 class="mb-3">Billing info</h5>
 
     <div class="form-row">
@@ -125,6 +133,8 @@
         <input type="text" formControlName="country2" class="form-control" id="country2">
       </div>
     </div>
+
+    <hr class="mt-4 mb-4">
 
     <div class="form-row">
       <div class="form-group col-md-6">
