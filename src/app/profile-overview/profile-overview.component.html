@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <div class="user-img mt-5"></div>
+  <div class="row">
+
+
+    <div class="user-card  col-3">
+
+      <h5 class="user-fullname mt-4 ml-4">{{user.firstname}} {{user.lastname}}</h5>
+
+      <nav class="mt-4 ml-4">
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"><i
+                class="fas fa-user"></i> Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"><i
+                class="fas fa-cog"></i> Edit account</a>
+          </li>
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </div>
+
+</div>
+
+  <div class="col-9 mt-4">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Firstname:</strong> {{ user.firstname }}</li>
+      <li class="list-group-item"><strong>Middlename:</strong> {{ user.middlename }}</li>
+      <li class="list-group-item"><strong>Lastname:</strong> {{ user.lastname }}</li>
+      <li class="list-group-item"><strong>Birth date:</strong> {{ user.dateofbirth }}</li>
+      <li class="list-group-item"><strong>Addressline:</strong> {{ user.addressline }}</li>
+      <li class="list-group-item"><strong>Zipcode:</strong> {{ user.zipcode }}</li>
+      <li class="list-group-item"><strong>City:</strong> {{ user.city }}</li>
+      <li class="list-group-item"><strong>Country:</strong> {{ user.country }}</li>
+    </ul>
+  </div>
+
+

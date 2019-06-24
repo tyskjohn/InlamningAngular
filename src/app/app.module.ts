@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { ProfileOverviewComponent } from './profile-overview/profile-overview.component';
 
 
 
@@ -21,7 +23,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    UpdateProfileComponent,
+    ProfileOverviewComponent
   ],
   imports: [
     BrowserModule,

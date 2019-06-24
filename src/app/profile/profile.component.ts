@@ -41,37 +41,25 @@ export class ProfileComponent implements OnInit {
       password: ['']
     })
 
-    this.authService.getUser()
-    .subscribe(data => {
+    this.authService.getUser().subscribe(data => {
       this.updateForm.patchValue(data)
       this.updateForm.controls["password"].setValue('')
     });
 
     this.authService.getUser()
       .subscribe(data => this.user = data);
-    
-    // if (this.authService.authToken) {
-      
-    // }
 
   }
 
   updateUserInfo() {
     this.isSubmitted = true;
-    console.log("1")
-
     if (this.updateForm.invalid) {
-      console.log("2")
-
       return;
     }
-    console.log("3")
 
     this.authService.updateUserInfo(this.updateForm.value).subscribe((updateres) => {
       if (updateres["success"]) {
-        console.log("4")
       } else {
-        console.log("5")
         this.router.navigateByUrl('/profile');
         window.alert("Profile updated successfully");
       }
